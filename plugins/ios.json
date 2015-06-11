@@ -7,18 +7,31 @@
         "files": {
             "framework": {
                 "parents": {
-                    "AudioToolbox.framework": []
+                    "AudioToolbox.framework": [
+                        {
+                            "xml": true,
+                            "count": 1
+                        }
+                    ]
                 }
             },
             "config.xml": {
                 "parents": {
-                    "/*": []
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"Notification\"><param name=\"ios-package\" value=\"CDVNotification\" /></feature>",
+                            "count": 1
+                        }
+                    ]
                 }
             }
         }
     },
     "installed_plugins": {
         "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.phonegap.helloworld"
+        },
+        "cordova-plugin-dialogs": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         }
     },
