@@ -44,6 +44,19 @@ var app = {
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
 
+        navigator.notification.alert('my message', null, 'Hello World', 'Ok');
+
         console.log('Received Event: ' + id);
+
+        /*
+        setTimeout(function () {
+            myfunc();
+        }, 2000);
+        */
+    },
+
+    myfunc: function () {
+        navigator.notification.alert('my func!');
+        $('#ready').html('my func was triggered!');
     }
 };
