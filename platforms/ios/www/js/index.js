@@ -32,7 +32,8 @@ var app = {
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
+    onDeviceReady: function () {
+        navigator.notification.alert('hello world');
         app.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event
@@ -45,5 +46,6 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
+        
     }
 };
