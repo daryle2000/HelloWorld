@@ -13,7 +13,12 @@
                             "count": 1
                         }
                     ],
-                    "CoreBluetooth.framework": [],
+                    "CoreBluetooth.framework": [
+                        {
+                            "xml": false,
+                            "count": 1
+                        }
+                    ],
                     "CoreLocation.framework": [
                         {
                             "xml": false,
@@ -36,6 +41,10 @@
                         {
                             "xml": "<feature name=\"Battery\"><param name=\"ios-package\" value=\"CDVBattery\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"BluetoothLePlugin\"><param name=\"ios-package\" value=\"BluetoothLePlugin\" /></feature>",
+                            "count": 1
                         }
                     ],
                     "/widget": []
@@ -46,6 +55,12 @@
                     "NSLocationWhenInUseUsageDescription": [
                         {
                             "xml": "<string />",
+                            "count": 1
+                        }
+                    ],
+                    "UIBackgroundModes": [
+                        {
+                            "xml": "<array><string>bluetooth-central</string></array>",
                             "count": 1
                         }
                     ]
@@ -64,6 +79,9 @@
             "PACKAGE_NAME": "com.phonegap.helloworld"
         },
         "org.apache.cordova.battery-status": {
+            "PACKAGE_NAME": "com.phonegap.helloworld"
+        },
+        "com.randdusing.bluetoothle": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         }
     },

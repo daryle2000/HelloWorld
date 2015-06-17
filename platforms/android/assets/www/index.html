@@ -28,11 +28,14 @@
         <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
         <title>Hello World</title>
     </head>
     <body>
         <div class="app">
-            <span id="message" style="font-size:16px;color:#ff6a00">Message Here</span>
+            <div id="location" style="font-size:16px;color:#ff6a00">Location waiting...</div>
+            <div id="battery" style="font-size:16px;color:#ff6a00">Battery waiting...</div>
+            <div id="bluetooth" style="font-size:16px;color:#ff6a00">Bluetooth waiting...</div>
             <div id="deviceready" class="blink">
                 <p id="listening" class="event listening">Connecting to Device</p>
                 <p id="ready" class="event received">Device is Ready</p>
@@ -40,9 +43,12 @@
         </div>
         <br />
         <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
-            app.initialize();
+            (new myApp()).init();
         </script>
+        
     </body>
 </html>

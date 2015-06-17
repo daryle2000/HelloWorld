@@ -45,6 +45,8 @@
 		2F0E589D52EF4B78987C5776 /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = F4DFD17E79914C3CBA567D87 /* CDVLocation.m */; };
 		E7877005D3244448803A5D23 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55BABE98068049259BA27B38 /* CoreLocation.framework */; };
 		46026FF1BD3240218832A2CD /* CDVBattery.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F402E4261A4432886EC6949 /* CDVBattery.m */; };
+		4F0CBB58907748ECB650C307 /* BluetoothLePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D3690C2BD04C9EBB18FADB /* BluetoothLePlugin.m */; };
+		F46956F6FBF5423A84404C03 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 968DCB6C679C4B00AF7AEC6B /* CoreBluetooth.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +121,9 @@
 		55BABE98068049259BA27B38 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "CoreLocation.framework"; path = "System/Library/Frameworks/CoreLocation.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
 		3F402E4261A4432886EC6949 /* CDVBattery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVBattery.m"; path = "org.apache.cordova.battery-status/CDVBattery.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		651DF3F11F654535881064FF /* CDVBattery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVBattery.h"; path = "org.apache.cordova.battery-status/CDVBattery.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		81D3690C2BD04C9EBB18FADB /* BluetoothLePlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "BluetoothLePlugin.m"; path = "com.randdusing.bluetoothle/BluetoothLePlugin.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		32C8351D546B473CB8CD6786 /* BluetoothLePlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "BluetoothLePlugin.h"; path = "com.randdusing.bluetoothle/BluetoothLePlugin.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		968DCB6C679C4B00AF7AEC6B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "CoreBluetooth.framework"; path = "System/Library/Frameworks/CoreBluetooth.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +137,7 @@
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
 				E87E26844752437CB423299D /* AudioToolbox.framework in Frameworks */,
 				E7877005D3244448803A5D23 /* CoreLocation.framework in Frameworks */,
+				F46956F6FBF5423A84404C03 /* CoreBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +213,7 @@
 				305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */,
 				63DFCFF51F394C17BC9FCDC1 /* AudioToolbox.framework */,
 				55BABE98068049259BA27B38 /* CoreLocation.framework */,
+				968DCB6C679C4B00AF7AEC6B /* CoreBluetooth.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -228,6 +235,8 @@
 				5FCAA5394B8D4A93A911F775 /* CDVLocation.h */,
 				3F402E4261A4432886EC6949 /* CDVBattery.m */,
 				651DF3F11F654535881064FF /* CDVBattery.h */,
+				81D3690C2BD04C9EBB18FADB /* BluetoothLePlugin.m */,
+				32C8351D546B473CB8CD6786 /* BluetoothLePlugin.h */,
 			);
 			name = Plugins;
 			path = "Hello World/Plugins";
@@ -416,6 +425,7 @@
 				7B29924944594453A4457848 /* CDVNotification.m in Sources */,
 				2F0E589D52EF4B78987C5776 /* CDVLocation.m in Sources */,
 				46026FF1BD3240218832A2CD /* CDVBattery.m in Sources */,
+				4F0CBB58907748ECB650C307 /* BluetoothLePlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

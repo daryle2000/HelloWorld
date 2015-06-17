@@ -25,6 +25,13 @@ module.exports = [
         "clobbers": [
             "navigator.battery"
         ]
+    },
+    {
+        "file": "plugins/com.randdusing.bluetoothle/www/bluetoothle.js",
+        "id": "com.randdusing.bluetoothle.BluetoothLe",
+        "clobbers": [
+            "window.bluetoothle"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -33,7 +40,8 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.0.0",
     "cordova-plugin-dialogs": "1.1.0",
     "org.apache.cordova.geolocation": "0.3.12",
-    "org.apache.cordova.battery-status": "0.2.12"
+    "org.apache.cordova.battery-status": "0.2.12",
+    "com.randdusing.bluetoothle": "2.1.0"
 }
 // BOTTOM OF METADATA
 });

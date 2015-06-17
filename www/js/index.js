@@ -24,12 +24,17 @@ function myApp() {
     this.locationObj = $('#location');
 
     this.onDeviceReady = function () {
-        _self.initOtherEvents();
         _self.showReady();
+        _self.initBatteryStatus();
+        _self.initGeoLocation();
+        _self.initBluetooth();
     };
 
-    this.initOtherEvents = function () {
+    this.initBatteryStatus = function () {
         window.addEventListener("batterystatus", _self.onBatteryStatus, false);     // battery status
+    }
+
+    this.initGeoLocation = function () {
         _self.getLocation();
     }
 
@@ -38,6 +43,38 @@ function myApp() {
         setTimeout(function () {
             _self.getLocation();
         }, 5000);
+    }
+
+    this.initBluetooth = function () {
+        bluetoothSerial.isEnabled(
+            function () {
+                alert('Bluetooth isEnabled Success');
+            },
+            function () {
+                alert('Bluetooth isEnabled Error');
+            });
+        
+
+        $('#bluetooth').html('Listing...');
+        /*
+        bluetoothSerial.isEnabled(
+            function () {
+                // Success
+                bluetoothSerial.list(
+                    function (results) {
+                        //$('#bluetooth').html(JSON.stringify(results));
+                        $('#bluetooth').html(results);
+                    },
+                    function (error) {
+                        //$('#bluetooth').html(JSON.stringify(error));
+                    }
+                );
+            },
+            function () {
+                // isEnabled Error
+            }
+        );
+        */
     }
 
     this.showReady = function () {

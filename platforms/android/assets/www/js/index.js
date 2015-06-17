@@ -16,54 +16,89 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var app = {
-    macAddress: "AA:BB:CC:DD:EE:FF",  // get your mac address from bluetoothSerial.list 
-    chars: "", 
 
-    // Application Constructor
-    initialize: function () {
-        this.bindEvents();
-    },
+function myApp() {
+    var _self = this;
 
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function () {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-        window.addEventListener("batterystatus", onBatteryStatus, false);
-        navigator.geolocation.getCurrentPosition(onSuccessGeoLocation, onErrorGeoLocation);
-    },
+    this.batteryObj = $('#battery');
+    this.locationObj = $('#location');
 
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function () {
-        app.receivedEvent('deviceready');
-    },
+    this.onDeviceReady = function () {
+        _self.initBatteryStatus();
+        _self.initGeoLocation();
+        _self.initBluetooth();
+        _self.showReady();
+    };
 
-    // Update DOM on a Received Event
-    receivedEvent: function (id) {
-        var parentElement = document.getElementById(id);
+    this.initBatteryStatus = function () {
+        window.addEventListener("batterystatus", _self.onBatteryStatus, false);     // battery status
+    }
+
+    this.initGeoLocation = function () {
+        _self.getLocation();
+    }
+
+    this.getLocation = function () {
+        navigator.geolocation.getCurrentPosition(_self.onSuccessGeoLocation, _self.onErrorGeoLocation);
+        setTimeout(function () {
+            _self.getLocation();
+        }, 5000);
+    }
+
+    this.initBluetooth = function () {
+        var listPorts = function () {
+            // list the available BT ports:
+            bluetoothSerial.list (
+                function (results) {
+                    $('#bluetooth').html(JSON.stringify(results));
+                },
+                function (error) {
+                    $('#bluetooth').html(JSON.stringify(error));
+                }
+            );
+        }
+    }
+
+    this.showReady = function () {
+        var parentElement = document.getElementById('deviceready');
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
 
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
-    },
-
-    onBatteryStatus: function (info) {
-        $('#message').html('Power Level: ' + info.level + ' isPlugged:' + info.isPlugged);
-    },
-
-    onSuccessGeoLocation: function (pos) {
-        $('#message').html('Long: ' + pos.coords.longitude + ' Lat: ' + pos.cor.latitude);
-    },
-    
-    onErrorGeoLocation: function (err) {
-        $('#message').html('Error');
     }
-};
+
+    this.onBatteryStatus = function (info) {
+        if (info.level > 80)
+            _self.batteryObj.css('color', '#00AA00');
+        else
+            if (info.level > 40)
+                _self.batteryObj.css('color', '#ff6a00');
+            else
+                _self.batteryObj.css('color', '#ff0000');
+
+        _self.batteryObj.html('Level: ' + info.level + '<br>Plugged: ' + info.isPlugged + '<br><br>');
+    }
+
+    this.onSuccessGeoLocation = function (pos) {
+        _self.locationObj.html('Lat: ' + pos.coords.latitude + '<br>Long: ' + pos.coords.longitude + '<br><br>');
+        _self.locationObj.css('color', '#0000FF');
+    }
+
+    this.onErrorGeoLocation = function (err) {
+        _self.locationObj.css('color', '#cc0000');
+    }
+
+    this.init = function () {
+        document.addEventListener('deviceready', _self.onDeviceReady, false);
+    }
+}
+
+
+
+
+
+
+
 
 
