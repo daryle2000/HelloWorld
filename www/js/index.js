@@ -17,59 +17,69 @@
  * under the License.
  */
 
-var messageObj = null;
+function myApp() {
+    var _self = this;
 
-function onDeviceReady() {
-    messageObj = $('#message');
-    initOtherEvents();
-    showReady();
-}
+    this.batteryObj = $('#battery');
+    this.locationObj = $('#location');
 
-function initOtherEvents() {
-    window.addEventListener("batterystatus", onBatteryStatus, false);     // battery status
-    getLocation();
-}
+    this.onDeviceReady = function () {
+        _self.initOtherEvents();
+        _self.showReady();
+    };
 
-function getLocation() {
-    navigator.geolocation.getCurrentPosition(onSuccessGeoLocation, onErrorGeoLocation);
-    setTimeout(function () {
-        getLocation();
-    }, 5000);
-}
+    this.initOtherEvents = function () {
+        window.addEventListener("batterystatus", _self.onBatteryStatus, false);     // battery status
+        _self.getLocation();
+    }
 
-function showReady() {
-    var parentElement = document.getElementById('deviceready');
-    var listeningElement = parentElement.querySelector('.listening');
-    var receivedElement = parentElement.querySelector('.received');
+    this.getLocation = function () {
+        navigator.geolocation.getCurrentPosition(_self.onSuccessGeoLocation, _self.onErrorGeoLocation);
+        setTimeout(function () {
+            _self.getLocation();
+        }, 5000);
+    }
 
-    listeningElement.setAttribute('style', 'display:none;');
-    receivedElement.setAttribute('style', 'display:block;');
+    this.showReady = function () {
+        var parentElement = document.getElementById('deviceready');
+        var listeningElement = parentElement.querySelector('.listening');
+        var receivedElement = parentElement.querySelector('.received');
 
-    messageObj.html('Waiting ...');
-}
+        listeningElement.setAttribute('style', 'display:none;');
+        receivedElement.setAttribute('style', 'display:block;');
+    }
 
-function onBatteryStatus(info) {
-    if (info.level > 80)
-        messageObj.css('color', '#00AA00');
-    else
-        if (info.level > 40)
-            messageObj.css('color', '#ff6a00');
+    this.onBatteryStatus = function (info) {
+        if (info.level > 80)
+            _self.batteryObj.css('color', '#00AA00');
         else
-            messageObj.css('color', '#ff0000');
-        
-    messageObj.html('Level: ' + info.level + '<br>Plugged: ' + info.isPlugged + '<br><br>');
+            if (info.level > 40)
+                _self.batteryObj.css('color', '#ff6a00');
+            else
+                _self.batteryObj.css('color', '#ff0000');
+
+        _self.batteryObj.html('Level: ' + info.level + '<br>Plugged: ' + info.isPlugged + '<br><br>');
+    }
+
+    this.onSuccessGeoLocation = function (pos) {
+        _self.locationObj.html('Lat: ' + pos.coords.latitude + '<br>Long: ' + pos.coords.longitude + '<br><br>');
+        _self.locationObj.css('color', '#0000FF');
+    }
+
+    this.onErrorGeoLocation = function (err) {
+        _self.locationObj.css('color', '#cc0000');
+    }
+
+    this.init = function () {
+        document.addEventListener('deviceready', _self.onDeviceReady, false);
+    }
 }
 
-function onSuccessGeoLocation(pos) {
-    messageObj.html('Lat: ' + pos.coords.latitude + '<br>Long: ' + pos.coords.longitude + '<br><br>');
-    messageObj.css('color', '#0000FF');
-}
-    
-function onErrorGeoLocation (err) {
-    messageObj.css('color', '#cc0000');
-}
 
 
-document.addEventListener('deviceready', onDeviceReady, false);
+
+
+
+
 
 
