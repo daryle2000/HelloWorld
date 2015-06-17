@@ -17,35 +17,53 @@
  * under the License.
  */
 var app = {
+    macAddress: "AA:BB:CC:DD:EE:FF",  // get your mac address from bluetoothSerial.list 
+    chars: "", 
+
     // Application Constructor
-    initialize: function() {
+    initialize: function () {
         this.bindEvents();
     },
+
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
+    bindEvents: function () {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+        window.addEventListener("batterystatus", onBatteryStatus, false);
+        navigator.geolocation.getCurrentPosition(onSuccessGeoLocation, onErrorGeoLocation);
     },
+
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
-        navigator.notification.alert('hello world');
         app.receivedEvent('deviceready');
     },
+
     // Update DOM on a Received Event
-    receivedEvent: function(id) {
+    receivedEvent: function (id) {
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
 
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
+    },
 
-        console.log('Received Event: ' + id);
-        
+    onBatteryStatus: function (info) {
+        $('#message').html('Power Level: ' + info.level + ' isPlugged:' + info.isPlugged);
+    },
+
+    onSuccessGeoLocation: function (pos) {
+        $('#message').html('Long: ' + pos.coords.longitude + ' Lat: ' + pos.cor.latitude);
+    },
+    
+    onErrorGeoLocation: function (err) {
+        $('#message').html('Error');
     }
 };
+
+

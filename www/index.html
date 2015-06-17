@@ -33,18 +33,16 @@
     </head>
     <body>
         <div class="app">
-            <h1>Hello World</h1>
+            <div id="message" style="font-size:16px;color:#ff6a00">Message</div>
             <div id="deviceready" class="blink">
                 <p id="listening" class="event listening">Connecting to Device</p>
                 <p id="ready" class="event received">Device is Ready</p>
             </div>
         </div>
         <br />
-        <script type="text/javascript" src="../platforms/ios/www/cordova.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
     </body>
 </html>

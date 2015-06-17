@@ -16,37 +16,60 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var app = {
-    // Application Constructor
-    initialize: function () {
-        this.bindEvents();
-    },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function () {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function () {
-        app.receivedEvent('deviceready');
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function (id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+var messageObj = null;
 
-        alert('Device is Ready!!!');
-    }
-
+function onDeviceReady() {
+    messageObj = $('#message');
+    initOtherEvents();
+    showReady();
 }
+
+function initOtherEvents() {
+    window.addEventListener("batterystatus", onBatteryStatus, false);     // battery status
+    getLocation();
+}
+
+function getLocation() {
+    navigator.geolocation.getCurrentPosition(onSuccessGeoLocation, onErrorGeoLocation);
+    setTimeout(function () {
+        getLocation();
+    }, 5000);
+}
+
+function showReady() {
+    var parentElement = document.getElementById('deviceready');
+    var listeningElement = parentElement.querySelector('.listening');
+    var receivedElement = parentElement.querySelector('.received');
+
+    listeningElement.setAttribute('style', 'display:none;');
+    receivedElement.setAttribute('style', 'display:block;');
+
+    messageObj.html('Waiting ...');
+}
+
+function onBatteryStatus(info) {
+    if (info.level > 80)
+        messageObj.css('color', '#00AA00');
+    else
+        if (info.level > 40)
+            messageObj.css('color', '#ff6a00');
+        else
+            messageObj.css('color', '#ff0000');
+        
+    messageObj.html('Level: ' + info.level + '<br>Plugged: ' + info.isPlugged + '<br><br>');
+}
+
+function onSuccessGeoLocation(pos) {
+    messageObj.html('Lat: ' + pos.coords.latitude + '<br>Long: ' + pos.coords.longitude + '<br><br>');
+    messageObj.css('color', '#0000FF');
+}
+    
+function onErrorGeoLocation (err) {
+    messageObj.css('color', '#cc0000');
+}
+
+
+document.addEventListener('deviceready', onDeviceReady, false);
 
 
