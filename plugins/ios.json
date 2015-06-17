@@ -41,13 +41,14 @@
                         {
                             "xml": "<feature name=\"Battery\"><param name=\"ios-package\" value=\"CDVBattery\" /></feature>",
                             "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"BluetoothLePlugin\"><param name=\"ios-package\" value=\"BluetoothLePlugin\" /></feature>",
-                            "count": 1
                         }
                     ],
-                    "/widget": []
+                    "/widget": [
+                        {
+                            "xml": "<feature name=\"BluetoothSerial\"><param name=\"ios-package\" onload=\"true\" value=\"MEGBluetoothSerial\" /></feature>",
+                            "count": 1
+                        }
+                    ]
                 }
             },
             "*-Info.plist": {
@@ -58,12 +59,7 @@
                             "count": 1
                         }
                     ],
-                    "UIBackgroundModes": [
-                        {
-                            "xml": "<array><string>bluetooth-central</string></array>",
-                            "count": 1
-                        }
-                    ]
+                    "UIBackgroundModes": []
                 }
             }
         }
@@ -81,7 +77,7 @@
         "org.apache.cordova.battery-status": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         },
-        "com.randdusing.bluetoothle": {
+        "com.megster.cordova.bluetoothserial": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         }
     },

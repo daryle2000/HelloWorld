@@ -19,13 +19,14 @@
                         {
                             "xml": "<feature name=\"Battery\"><param name=\"android-package\" value=\"org.apache.cordova.batterystatus.BatteryListener\" /></feature>",
                             "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"BluetoothLePlugin\"><param name=\"android-package\" value=\"com.randdusing.bluetoothle.BluetoothLePlugin\" /></feature>",
-                            "count": 1
                         }
                     ],
-                    "/widget": []
+                    "/widget": [
+                        {
+                            "xml": "<feature name=\"BluetoothSerial\"><param name=\"android-package\" value=\"com.megster.cordova.BluetoothSerial\" /></feature>",
+                            "count": 1
+                        }
+                    ]
                 }
             },
             "AndroidManifest.xml": {
@@ -67,7 +68,7 @@
         "org.apache.cordova.battery-status": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         },
-        "com.randdusing.bluetoothle": {
+        "com.megster.cordova.bluetoothserial": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         }
     },

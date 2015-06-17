@@ -46,16 +46,22 @@ function myApp() {
     }
 
     this.initBluetooth = function () {
-        bluetoothSerial.isEnabled(
-            function () {
-                alert('Bluetooth isEnabled Success');
-            },
-            function () {
-                alert('Bluetooth isEnabled Error');
-            });
-        
+        try
+        {
+            bluetoothSerial.list(
+                function (results) {
+                    $('#bluetooth').html(JSON.stringify(results));
+                },
+                function (error) {
+                    $('#bluetooth').html(JSON.stringify(error));
+                });
+        }
+        catch (e) {
+            alert(e);
+        }
 
         $('#bluetooth').html('Listing...');
+
         /*
         bluetoothSerial.isEnabled(
             function () {

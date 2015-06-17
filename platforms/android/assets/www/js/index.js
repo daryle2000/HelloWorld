@@ -24,10 +24,10 @@ function myApp() {
     this.locationObj = $('#location');
 
     this.onDeviceReady = function () {
+        _self.showReady();
         _self.initBatteryStatus();
         _self.initGeoLocation();
         _self.initBluetooth();
-        _self.showReady();
     };
 
     this.initBatteryStatus = function () {
@@ -46,17 +46,41 @@ function myApp() {
     }
 
     this.initBluetooth = function () {
-        var listPorts = function () {
-            // list the available BT ports:
-            bluetoothSerial.list (
+        try
+        {
+            window.bluetoothSerial.isEnabled(
                 function (results) {
-                    $('#bluetooth').html(JSON.stringify(results));
+                    alert(results);
                 },
                 function (error) {
-                    $('#bluetooth').html(JSON.stringify(error));
-                }
-            );
+                    alert(error);
+                });
         }
+        catch (e) {
+            alert(e);
+        }
+
+        $('#bluetooth').html('Listing...');
+
+        /*
+        bluetoothSerial.isEnabled(
+            function () {
+                // Success
+                bluetoothSerial.list(
+                    function (results) {
+                        //$('#bluetooth').html(JSON.stringify(results));
+                        $('#bluetooth').html(results);
+                    },
+                    function (error) {
+                        //$('#bluetooth').html(JSON.stringify(error));
+                    }
+                );
+            },
+            function () {
+                // isEnabled Error
+            }
+        );
+        */
     }
 
     this.showReady = function () {

@@ -11,6 +11,9 @@
     <feature name="Battery">
         <param name="android-package" value="org.apache.cordova.batterystatus.BatteryListener" />
     </feature>
+    <feature name="BluetoothSerial">
+        <param name="android-package" value="com.megster.cordova.BluetoothSerial" />
+    </feature>
     <allow-intent href="market:*" />
     <name>Hello World</name>
     <description>
@@ -41,7 +44,7 @@
     <gap:plugin name="org.apache.cordova.dialogs" />
     <gap:plugin name="org.apache.cordova.geolocation" />
     <gap:plugin name="org.apache.cordova.battery-status" />
-    <gap:plugin name="com.megster.cordova.bluetoothserial" version="0.4.3" />
+    <gap:plugin name="com.megster.cordova.bluetoothserial" />
     <icon src="icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
     <icon gap:platform="android" gap:qualifier="mdpi" src="www/res/icon/android/icon-48-mdpi.png" />
@@ -74,7 +77,4 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <feature name="BluetoothLePlugin">
-        <param name="android-package" value="com.randdusing.bluetoothle.BluetoothLePlugin" />
-    </feature>
 </widget>
