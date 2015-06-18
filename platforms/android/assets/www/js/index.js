@@ -87,8 +87,15 @@ function myApp() {
     this.initBluetooth = function () {
         try
         {
-            _self.btObj.html('Scan Started...<br>');
-            bluetoothSerial.list( _self.btListSuccess, _self.btListError);
+            bluetoothSerial.isEnabled(
+                function () {
+                    _self.btObj.html('Scan Started...<br>');
+                    bluetoothSerial.list(_self.btListSuccess, _self.btListError);
+                },
+                function () {
+                    _self.btObj.html('BT not enabled...<br>');
+                });
+            
         }
         catch (e) {
             _self.btObj.append("Scan Exception: " + e + "<br>");
@@ -105,7 +112,7 @@ function myApp() {
     }
 
     this.btListError = function (error) {
-        _self.btObj.html('Error: ' + JSON.stringify(error));
+        _self.btObj.html('BT List Error!!!');
     }
 }
 
