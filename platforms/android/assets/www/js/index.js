@@ -86,7 +86,7 @@ function myApp() {
     this.initBluetooth = function () {
         try
         {
-            $('#bluetooth').html ('');
+            $('#bluetooth').html ('Scan Started...<br>');
             bluetoothSerial.list( _self.btListSuccess, _self.btListError);
         }
         catch (e) {
