@@ -50,8 +50,11 @@ function myApp() {
             // list the available BT ports:
             bluetoothSerial.list(
                 function (results) {
-                    alert('BT Success');
-                    alert(results);
+                    //var bts = JSON.parse(results);
+                    alert('BT Success -->' + results.length);
+                    for (var idx = 0; idx < results.length; idx++) {
+                        alert('id: ' + results[idx].id + ' name:' + results[idx].name);
+                    }
                 },
                 function (error) {
                     alert('BT Fail');
