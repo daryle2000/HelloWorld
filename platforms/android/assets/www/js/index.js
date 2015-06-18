@@ -84,8 +84,14 @@ function myApp() {
     // --------------------------------------------------------------------------------------------------------------------
 
     this.initBluetooth = function () {
-        var paramsObj = { request: true };
-        bluetoothle.initialize(_self.btInitializeSuccess, _self.btInitializeError, paramsObj);
+        try
+        {
+            var paramsObj = { request: true };
+            bluetoothle.initialize(_self.btInitializeSuccess, _self.btInitializeError, paramsObj);
+        }
+        catch (e) {
+            alert("initBluetooth Exception: " + e);
+        }
     }
 
     // --------------------------------------------------------------------------------------------------------------------
@@ -93,6 +99,8 @@ function myApp() {
     // --------------------------------------------------------------------------------------------------------------------
 
     this.btInitializeSuccess = function (result) {
+        alert("BT Initialize Success: " + result.status);
+        /*
         var btDevices = $('#bluetooth');
 
         if (result.status == "enabled") {
@@ -110,6 +118,7 @@ function myApp() {
                     });
             }, 15000);
         }
+        */
     }
 
     this.btInitializeError = function (result) {
