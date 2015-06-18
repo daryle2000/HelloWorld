@@ -27,7 +27,7 @@ function myApp() {
         _self.showReady();
         _self.initBatteryStatus();
         _self.initGeoLocation();
-        //_self.initBluetooth();
+        _self.initBluetooth();
     };
 
     this.initBatteryStatus = function () {
@@ -99,41 +99,42 @@ function myApp() {
     // --------------------------------------------------------------------------------------------------------------------
 
     this.btInitializeSuccess = function (result) {
-        alert("BT Initialize Success: " + result.status);
-        /*
         var btDevices = $('#bluetooth');
 
-        if (result.status == "enabled") {
+        if (result.status == 'enabled') {
             // StartScanning Bluetooth Devices
-            btDevices.html ("");
+            btDevices.html ('');
             _self.btStartScan();
 
             // 15 seconds then stop scanning
             setTimeout(function () {
-                bluetoothle.stopScan (
-                    function () {
-                        btDevices.append("End Scan!<br>");
-                    }, 
-                    function () {
-                    });
+                _self.btStopScan();
             }, 15000);
         }
-        */
     }
 
     this.btInitializeError = function (result) {
-        alert ("BT Initialize Error : " + JSON.stringify(result));
+        alert("BT Initialize Error : " + JSON.stringify(result));
     }
 
     // --------------------------------------------------------------------------------------------------------------------
     // BT Scanning
     // --------------------------------------------------------------------------------------------------------------------
-
-    this.btStartScan() = function () {
+    
+    this.btStartScan = function () {
         var paramsObj = { serviceUuids: [] };
         bluetoothle.startScan(_self.btScanSuccess, _self.btScanError, paramsObj);
     }
-
+    
+    this.btStopScan = function () {
+        bluetoothle.stopScan (
+                    function (result) {
+                        btDevices.append("End Scan!<br>");
+                    },
+                    function (result) {
+                    });
+    }
+    
     this.btScanSuccess = function (result) {
         var btDevices = $('#bluetooth');
 
@@ -153,7 +154,6 @@ function myApp() {
         var btDevices = $('#bluetooth');
         btDevices.append("Scan Error: " + JSON.stringify(result));
     }
-
 }
 
 
