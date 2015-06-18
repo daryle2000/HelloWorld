@@ -45,32 +45,6 @@ function myApp() {
         }, 5000);
     }
 
-    this.initBluetooth = function () {
-        var listPorts = function () {
-            // list the available BT ports:
-            bluetoothSerial.list(
-                function (results) {
-                    //var bts = JSON.parse(results);
-                    alert('BT Success -->' + results.length);
-                    for (var idx = 0; idx < results.length; idx++) {
-                        alert('id: ' + results[idx].id + ' name:' + results[idx].name);
-                    }
-                },
-                function (error) {
-                    alert('BT Fail');
-                }
-            );
-        }
-
-        // if isEnabled returns failure, this function is called:
-        var notEnabled = function () {
-            alert("Bluetooth is not enabled!!!")
-        }
-
-        // check if Bluetooth is on:
-        bluetoothSerial.isEnabled(listPorts, notEnabled);
-    }
-
     this.showReady = function () {
         var parentElement = document.getElementById('deviceready');
         var listeningElement = parentElement.querySelector('.listening');
@@ -104,6 +78,73 @@ function myApp() {
     this.init = function () {
         document.addEventListener('deviceready', _self.onDeviceReady, false);
     }
+
+    // --------------------------------------------------------------------------------------------------------------------
+    // --- BLUETOOTH ---
+    // --------------------------------------------------------------------------------------------------------------------
+
+    this.initBluetooth = function () {
+        var paramsObj = { request: true };
+        bluetoothle.initialize(_self.btInitializeSuccess, _self.btInitializeError, paramsObj);
+    }
+
+    // --------------------------------------------------------------------------------------------------------------------
+    // BT Initialize
+    // --------------------------------------------------------------------------------------------------------------------
+
+    this.btInitializeSuccess = function (result) {
+        var btDevices = $('#bluetooth');
+
+        if (result.status == "enabled") {
+            // StartScanning Bluetooth Devices
+            btDevices.html ("");
+            _self.btStartScan();
+
+            // 15 seconds then stop scanning
+            setTimeout(function () {
+                bluetoothle.stopScan (
+                    function () {
+                        btDevices.append("End Scan!<br>");
+                    }, 
+                    function () {
+                    });
+            }, 15000);
+        }
+    }
+
+    this.btInitializeError = function (result) {
+        alert ("BT Initialize Error : " + JSON.stringify(result));
+    }
+
+    // --------------------------------------------------------------------------------------------------------------------
+    // BT Scanning
+    // --------------------------------------------------------------------------------------------------------------------
+
+    this.btStartScan() = function () {
+        var paramsObj = { serviceUuids: [] };
+        bluetoothle.startScan(_self.btScanSuccess, _self.btScanError, paramsObj);
+    }
+
+    this.btScanSuccess = function (result) {
+        var btDevices = $('#bluetooth');
+
+        if (result.status == "scanResult") {
+            var item = "advertisement: " + result.advertisement + ", " +
+                       "rssi: " + result.rssi + ", " +
+                       "name: " + result.name + ", " +
+                       "address: " + result.address + "<br>";
+            btDevices.append(item);
+        }
+        else {
+            btDevices.append("Scan Started...<br>");
+        }
+    }
+
+    this.btScanError = function (result) {
+        var btDevices = $('#bluetooth');
+        btDevices.append("Scan Error: " + JSON.stringify(result));
+    }
+
 }
 
 

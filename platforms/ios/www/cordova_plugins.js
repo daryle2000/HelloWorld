@@ -1,13 +1,6 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
-        "file": "plugins/com.megster.cordova.bluetoothserial/www/bluetoothSerial.js",
-        "id": "com.megster.cordova.bluetoothserial.bluetoothSerial",
-        "clobbers": [
-            "window.bluetoothSerial"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-dialogs/www/notification.js",
         "id": "cordova-plugin-dialogs.notification",
         "merges": [
@@ -48,16 +41,23 @@ module.exports = [
         "clobbers": [
             "navigator.geolocation"
         ]
+    },
+    {
+        "file": "plugins/com.randdusing.bluetoothle/www/bluetoothle.js",
+        "id": "com.randdusing.bluetoothle.BluetoothLe",
+        "clobbers": [
+            "window.bluetoothle"
+        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "com.megster.cordova.bluetoothserial": "0.4.3",
     "cordova-plugin-dialogs": "1.1.0",
     "cordova-plugin-whitelist": "1.0.0",
     "org.apache.cordova.battery-status": "0.2.12",
-    "org.apache.cordova.geolocation": "0.3.12"
+    "org.apache.cordova.geolocation": "0.3.12",
+    "com.randdusing.bluetoothle": "2.1.0"
 }
 // BOTTOM OF METADATA
 });

@@ -27,10 +27,10 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/com.megster.cordova.bluetoothserial/www/bluetoothSerial.js",
-        "id": "com.megster.cordova.bluetoothserial.bluetoothSerial",
+        "file": "plugins/com.randdusing.bluetoothle/www/bluetoothle.js",
+        "id": "com.randdusing.bluetoothle.BluetoothLe",
         "clobbers": [
-            "window.bluetoothSerial"
+            "window.bluetoothle"
         ]
     }
 ];
@@ -41,7 +41,7 @@ module.exports.metadata =
     "cordova-plugin-dialogs": "1.1.0",
     "org.apache.cordova.geolocation": "0.3.12",
     "org.apache.cordova.battery-status": "0.2.12",
-    "com.megster.cordova.bluetoothserial": "0.4.3"
+    "com.randdusing.bluetoothle": "2.1.0"
 }
 // BOTTOM OF METADATA
 });
