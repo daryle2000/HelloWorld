@@ -27,7 +27,7 @@ function myApp() {
         _self.showReady();
         _self.initBatteryStatus();
         _self.initGeoLocation();
-        _self.initBluetooth();
+        //_self.initBluetooth();
     };
 
     this.initBatteryStatus = function () {
