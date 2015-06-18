@@ -50,37 +50,15 @@ function myApp() {
         {
             bluetoothSerial.list(
                 function (results) {
-                    $('#bluetooth').html('BT Success: ' + JSON.stringify(results));
+                    navigator.notification.alert('BT Success: ' + JSON.stringify(results));
                 },
                 function (error) {
-                    $('#bluetooth').html('BT Error: ' + JSON.stringify(error));
+                    navigator.notification.alert('BT Error: ' + JSON.stringify(error));
                 });
         }
         catch (e) {
-            $('#bluetooth').html('BT Exception: ' + e);
+            navigator.notification.alert('BT Exception: ' + e);
         }
-
-        //$('#bluetooth').html('Listing...');
-
-        /*
-        bluetoothSerial.isEnabled(
-            function () {
-                // Success
-                bluetoothSerial.list(
-                    function (results) {
-                        //$('#bluetooth').html(JSON.stringify(results));
-                        $('#bluetooth').html(results);
-                    },
-                    function (error) {
-                        //$('#bluetooth').html(JSON.stringify(error));
-                    }
-                );
-            },
-            function () {
-                // isEnabled Error
-            }
-        );
-        */
     }
 
     this.showReady = function () {
