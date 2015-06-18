@@ -51,7 +51,7 @@ function myApp() {
             bluetoothSerial.list(
                 function (results) {
                     alert('BT Success');
-                    alert(results);
+                    alert(JSON.stringify(results));
                 },
                 function (error) {
                     alert('BT Fail');
