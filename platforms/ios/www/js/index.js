@@ -91,7 +91,8 @@ function myApp() {
             bluetoothSerial.list( _self.btListSuccess, _self.btListError);
         }
         catch (e) {
-            alert("initBluetooth Exception: " + e);
+            _self.btObj.append("Scan Exception: " + e + "<br>");
+            _self.btObj.append("Scanning is stopped!<br>");
         }
     }
 
