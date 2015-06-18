@@ -46,41 +46,26 @@ function myApp() {
     }
 
     this.initBluetooth = function () {
-        try
-        {
-            window.bluetoothSerial.isEnabled(
+        var listPorts = function () {
+            // list the available BT ports:
+            bluetoothSerial.list(
                 function (results) {
+                    alert('BT Success');
                     alert(results);
                 },
                 function (error) {
-                    alert(error);
-                });
-        }
-        catch (e) {
-            alert(e);
+                    alert('BT Fail');
+                }
+            );
         }
 
-        $('#bluetooth').html('Listing...');
+        // if isEnabled returns failure, this function is called:
+        var notEnabled = function () {
+            alert("Bluetooth is not enabled!!!")
+        }
 
-        /*
-        bluetoothSerial.isEnabled(
-            function () {
-                // Success
-                bluetoothSerial.list(
-                    function (results) {
-                        //$('#bluetooth').html(JSON.stringify(results));
-                        $('#bluetooth').html(results);
-                    },
-                    function (error) {
-                        //$('#bluetooth').html(JSON.stringify(error));
-                    }
-                );
-            },
-            function () {
-                // isEnabled Error
-            }
-        );
-        */
+        // check if Bluetooth is on:
+        bluetoothSerial.isEnabled(listPorts, notEnabled);
     }
 
     this.showReady = function () {

@@ -46,8 +46,6 @@ function myApp() {
     }
 
     this.initBluetooth = function () {
-        navigator.notification.alert('Bluetooth Init!!!');
-        /*
         var listPorts = function () {
             // list the available BT ports:
             bluetoothSerial.list(
@@ -63,12 +61,11 @@ function myApp() {
 
         // if isEnabled returns failure, this function is called:
         var notEnabled = function () {
-            alert("Bluetooth is not enabled.")
+            alert("Bluetooth is not enabled!!!")
         }
 
         // check if Bluetooth is on:
         bluetoothSerial.isEnabled(listPorts, notEnabled);
-        */
     }
 
     this.showReady = function () {
