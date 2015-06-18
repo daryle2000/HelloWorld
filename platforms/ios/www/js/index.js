@@ -97,7 +97,7 @@ function myApp() {
     }
 
     this.btListSuccess = function (result) {
-        _self.btObj.append('Found (' + result.length + ') device(s)<br>');
+        _self.btObj.append('Found ' + result.length + ' device(s)<br>');
         
         for (var idx=0; idx<result.length; idx++) {
             _self.btObj.append('id: ' + result[idx].id + ', name: ' + result[idx].name + '<br>');
