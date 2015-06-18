@@ -105,7 +105,7 @@ function myApp() {
     }
 
     this.btListError = function (error) {
-        _self.btObj.html(JSON.stringify(error));
+        _self.btObj.html('Error: ' + JSON.stringify(error));
     }
 }
 
