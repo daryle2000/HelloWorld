@@ -31,7 +31,7 @@
     <gap:plugin name="org.apache.cordova.dialogs" />
     <gap:plugin name="org.apache.cordova.geolocation" />
     <gap:plugin name="org.apache.cordova.battery-status" />
-    <gap:plugin name="com.megster.cordova.bluetoothserial" />
+    <gap:plugin name="com.megster.cordova.bluetoothserial" version="0.4.3" />
   
     <icon src="icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
