@@ -31,11 +31,10 @@
         "is_top_level": true,
         "variables": {}
     },
-    "com.randdusing.bluetoothle": {
+    "com.megster.cordova.bluetoothserial": {
         "source": {
-            "type": "git",
-            "url": "https://github.com/randdusing/BluetoothLE",
-            "subdir": "."
+            "type": "registry",
+            "id": "com.megster.cordova.bluetoothserial"
         },
         "is_top_level": true,
         "variables": {}

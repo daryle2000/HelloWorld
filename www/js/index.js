@@ -86,73 +86,25 @@ function myApp() {
     this.initBluetooth = function () {
         try
         {
-            var paramsObj = { request: true };
-            bluetoothle.initialize(_self.btInitializeSuccess, _self.btInitializeError, paramsObj);
+            $('#bluetooth').html ('');
+            bluetoothSerial.list( _self.btListSuccess, _self.btListError);
         }
         catch (e) {
             alert("initBluetooth Exception: " + e);
         }
     }
 
-    // --------------------------------------------------------------------------------------------------------------------
-    // BT Initialize
-    // --------------------------------------------------------------------------------------------------------------------
-
-    this.btInitializeSuccess = function (result) {
+    this.btListSuccess = function (result) {
         var btDevices = $('#bluetooth');
-
-        if (result.status == 'enabled') {
-            // StartScanning Bluetooth Devices
-            btDevices.html ('');
-            _self.btStartScan();
-
-            // 15 seconds then stop scanning
-            setTimeout(function () {
-                _self.btStopScan();
-            }, 15000);
+        btDevices.append ('Found (' + result.length + ') device(s)<br>');
+        
+        for (var idx=0; idx<result.length; idx++) {
+            btDevices.append ('id: ' + result[idx].id + ', name: ' + result[idx].name + '<br>');
         }
     }
 
-    this.btInitializeError = function (result) {
-        alert("BT Initialize Error : " + JSON.stringify(result));
-    }
-
-    // --------------------------------------------------------------------------------------------------------------------
-    // BT Scanning
-    // --------------------------------------------------------------------------------------------------------------------
-    
-    this.btStartScan = function () {
-        var paramsObj = { serviceUuids: [] };
-        bluetoothle.startScan(_self.btScanSuccess, _self.btScanError, paramsObj);
-    }
-    
-    this.btStopScan = function () {
-        bluetoothle.stopScan (
-                    function (result) {
-                        btDevices.append("End Scan!<br>");
-                    },
-                    function (result) {
-                    });
-    }
-    
-    this.btScanSuccess = function (result) {
-        var btDevices = $('#bluetooth');
-
-        if (result.status == "scanResult") {
-            var item = "advertisement: " + result.advertisement + ", " +
-                       "rssi: " + result.rssi + ", " +
-                       "name: " + result.name + ", " +
-                       "address: " + result.address + "<br>";
-            btDevices.append(item);
-        }
-        else {
-            btDevices.append("Scan Started...<br>");
-        }
-    }
-
-    this.btScanError = function (result) {
-        var btDevices = $('#bluetooth');
-        btDevices.append("Scan Error: " + JSON.stringify(result));
+    this.btListError = function (error) {
+        $('#bluetooth').html (JSON.stringify(error));
     }
 }
 

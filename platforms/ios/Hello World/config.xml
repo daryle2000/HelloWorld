@@ -14,6 +14,9 @@
     <feature name="LocalStorage">
         <param name="ios-package" value="CDVLocalStorage" />
     </feature>
+    <feature name="BluetoothSerial">
+        <param name="ios-package" onload="true" value="MEGBluetoothSerial" />
+    </feature>
     <feature name="Notification">
         <param name="ios-package" value="CDVNotification" />
     </feature>
@@ -22,9 +25,6 @@
     </feature>
     <feature name="Geolocation">
         <param name="ios-package" value="CDVLocation" />
-    </feature>
-    <feature name="BluetoothLePlugin">
-        <param name="ios-package" value="BluetoothLePlugin" />
     </feature>
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
@@ -57,7 +57,7 @@
     <gap:plugin name="org.apache.cordova.dialogs" />
     <gap:plugin name="org.apache.cordova.geolocation" />
     <gap:plugin name="org.apache.cordova.battery-status" />
-    <gap:plugin name="com.randdusing.bluetoothle" />
+    <gap:plugin name="om.megster.cordova.bluetoothserial" />
     <icon src="icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
     <icon gap:platform="android" gap:qualifier="mdpi" src="www/res/icon/android/icon-48-mdpi.png" />

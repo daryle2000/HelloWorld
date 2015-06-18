@@ -29,7 +29,12 @@
             },
             "config.xml": {
                 "parents": {
-                    "/widget": [],
+                    "/widget": [
+                        {
+                            "xml": "<feature name=\"BluetoothSerial\"><param name=\"ios-package\" onload=\"true\" value=\"MEGBluetoothSerial\" /></feature>",
+                            "count": 1
+                        }
+                    ],
                     "/*": [
                         {
                             "xml": "<feature name=\"Notification\"><param name=\"ios-package\" value=\"CDVNotification\" /></feature>",
@@ -41,10 +46,6 @@
                         },
                         {
                             "xml": "<feature name=\"Geolocation\"><param name=\"ios-package\" value=\"CDVLocation\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"BluetoothLePlugin\"><param name=\"ios-package\" value=\"BluetoothLePlugin\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -58,12 +59,7 @@
                             "count": 1
                         }
                     ],
-                    "UIBackgroundModes": [
-                        {
-                            "xml": "<array><string>bluetooth-central</string></array>",
-                            "count": 1
-                        }
-                    ]
+                    "UIBackgroundModes": []
                 }
             }
         }
@@ -81,7 +77,7 @@
         "org.apache.cordova.geolocation": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         },
-        "com.randdusing.bluetoothle": {
+        "com.megster.cordova.bluetoothserial": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         }
     },
