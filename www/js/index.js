@@ -50,17 +50,17 @@ function myApp() {
         {
             bluetoothSerial.list(
                 function (results) {
-                    $('#bluetooth').html(JSON.stringify(results));
+                    $('#bluetooth').html('BT Success: ' + JSON.stringify(results));
                 },
                 function (error) {
-                    $('#bluetooth').html(JSON.stringify(error));
+                    $('#bluetooth').html('BT Error: ' + JSON.stringify(error));
                 });
         }
         catch (e) {
-            alert(e);
+            $('#bluetooth').html('BT Exception: ' + e);
         }
 
-        $('#bluetooth').html('Listing...');
+        //$('#bluetooth').html('Listing...');
 
         /*
         bluetoothSerial.isEnabled(
