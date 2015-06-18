@@ -22,6 +22,7 @@ function myApp() {
 
     this.batteryObj = $('#battery');
     this.locationObj = $('#location');
+    this.btObj = $('#bluetooth');
 
     this.onDeviceReady = function () {
         _self.showReady();
@@ -86,7 +87,7 @@ function myApp() {
     this.initBluetooth = function () {
         try
         {
-            $('#bluetooth').html ('Scan Started...<br>');
+            _self.btObj.html('Scan Started...<br>');
             bluetoothSerial.list( _self.btListSuccess, _self.btListError);
         }
         catch (e) {
@@ -95,16 +96,15 @@ function myApp() {
     }
 
     this.btListSuccess = function (result) {
-        var btDevices = $('#bluetooth');
-        btDevices.append ('Found (' + result.length + ') device(s)<br>');
+        _self.btObj.append('Found (' + result.length + ') device(s)<br>');
         
         for (var idx=0; idx<result.length; idx++) {
-            btDevices.append ('id: ' + result[idx].id + ', name: ' + result[idx].name + '<br>');
+            _self.btObj.append('id: ' + result[idx].id + ', name: ' + result[idx].name + '<br>');
         }
     }
 
     this.btListError = function (error) {
-        $('#bluetooth').html (JSON.stringify(error));
+        _self.btObj.html(JSON.stringify(error));
     }
 }
 
