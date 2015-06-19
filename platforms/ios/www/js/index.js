@@ -86,16 +86,9 @@ function myApp() {
 
     this.initBluetooth = function () {
         try
-        {
-            bluetoothSerial.isEnabled(
-                function () {
-                    _self.btObj.html('Scan Started...<br>');
-                    bluetoothSerial.list(_self.btListSuccess, _self.btListError);
-                },
-                function () {
-                    _self.btObj.html('BT not enabled...<br>');
-                });
-            
+        {       
+            _self.btObj.html('Scan Started...<br>');
+            bluetoothSerial.list(_self.btListSuccess, _self.btListError);                     
         }
         catch (e) {
             _self.btObj.append("Scan Exception: " + e + "<br>");
