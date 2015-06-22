@@ -20,12 +20,19 @@
 function myApp() {
     var _self = this;
 
-    this.batteryObj = $('#battery');
-    this.locationObj = $('#location');
-    this.btObj = $('#bluetooth');
+    this.messagesObj = $('#messages');
+
+    this.postMessage = function (msg) {
+        _self.messagesObj.append(msg + '<br>');
+    }
 
     this.onDeviceReady = function () {
-        _self.showReady();
+        StatusBar.show();
+        StatusBar.overlaysWebView(false);
+        StatusBar.backgroundColorByHexString("#C8DB2F");
+
+        _self.postMessage('Device is Ready ...');
+        
         _self.initBatteryStatus();
         _self.initGeoLocation();
         _self.initBluetooth();
@@ -36,44 +43,19 @@ function myApp() {
     }
 
     this.initGeoLocation = function () {
-        _self.getLocation();
-    }
-
-    this.getLocation = function () {
         navigator.geolocation.getCurrentPosition(_self.onSuccessGeoLocation, _self.onErrorGeoLocation);
-        setTimeout(function () {
-            _self.getLocation();
-        }, 5000);
-    }
-
-    this.showReady = function () {
-        var parentElement = document.getElementById('deviceready');
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
     }
 
     this.onBatteryStatus = function (info) {
-        if (info.level > 80)
-            _self.batteryObj.css('color', '#00AA00');
-        else
-            if (info.level > 40)
-                _self.batteryObj.css('color', '#ff6a00');
-            else
-                _self.batteryObj.css('color', '#ff0000');
-
-        _self.batteryObj.html('Level: ' + info.level + '<br>Plugged: ' + info.isPlugged + '<br><br>');
+        _self.postMessage('Level: ' + info.level + ' Plugged: ' + info.isPlugged);
     }
 
     this.onSuccessGeoLocation = function (pos) {
-        _self.locationObj.html('Lat: ' + pos.coords.latitude + '<br>Long: ' + pos.coords.longitude + '<br><br>');
-        _self.locationObj.css('color', '#0000FF');
+        _self.postMessage('Latitude: ' + pos.coords.latitude);
+        _self.postMessage('Logitude: ' + pos.coords.longitude);
     }
 
     this.onErrorGeoLocation = function (err) {
-        _self.locationObj.css('color', '#cc0000');
     }
 
     this.init = function () {
@@ -87,25 +69,25 @@ function myApp() {
     this.initBluetooth = function () {
         try
         {       
-            _self.btObj.html('Scan Started...<br>');
+            _self.postMessage('Scan Started...');
             bluetoothSerial.list(_self.btListSuccess, _self.btListError);                     
         }
         catch (e) {
-            _self.btObj.append("Scan Exception: " + e + "<br>");
-            _self.btObj.append("Scanning is stopped!<br>");
+            _self.postMessage("Scan Exception: " + e);
+            _self.postMessage("Scanning is stopped!");
         }
     }
 
     this.btListSuccess = function (result) {
-        _self.btObj.append('Found ' + result.length + ' device(s)<br>');
+        _self.postMessage('Found ' + result.length + ' device(s)');
         
         for (var idx=0; idx<result.length; idx++) {
-            _self.btObj.append('id: ' + result[idx].id + ', name: ' + result[idx].name + '<br>');
+            _self.postMessage ('id: ' + result[idx].id + ', name: ' + result[idx].name);
         }
     }
 
     this.btListError = function (error) {
-        _self.btObj.html('BT List Error!!!');
+        _self.postMessage ('BT List Error!!!');
     }
 }
 
