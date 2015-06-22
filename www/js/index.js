@@ -29,7 +29,7 @@ function myApp() {
     this.onDeviceReady = function () {
         StatusBar.show();
         StatusBar.overlaysWebView(false);
-        StatusBar.backgroundColorByHexString("#C8DB2F");
+        StatusBar.backgroundColorByHexString("#aa0000");
 
         _self.postMessage('Device is Ready ...');
         
