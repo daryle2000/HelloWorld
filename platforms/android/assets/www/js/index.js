@@ -35,11 +35,6 @@ function myApp() {
             StatusBar.overlaysWebView(false);
             StatusBar.backgroundColorByHexString("#aa0000");
 
-            var w = _self.windowObj.width();
-            var h = _self.windowObj.height();
-            _self.pageObj.css('min-width', w + 'px');
-            _self.pageObj.css('min-height', h + 'px');
-
             _self.postMessage('Device is Ready ...');
         
             _self.initBatteryStatus();
