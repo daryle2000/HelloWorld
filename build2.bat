@@ -1,4 +1,4 @@
 @echo COMMIT REPOSITORY
 git add .
-git commit -a -m 'joe-commit'
+git commit -a -m '%date%'
 git push https://github.com/daryle2000/HelloWorld.git
