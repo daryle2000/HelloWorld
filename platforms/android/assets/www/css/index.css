@@ -1,21 +1,84 @@
 
 body 
 {
-    background-color:#000;
-    border:solid 10px #aa0000;
+    background-color:#000000;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:12px;
     padding:25px;
 }
 
 
-.button {
-    border-radius:8px 8px;
-    border:solid 1px #000000;
-    width:80%;
-    height:50px;
-    text-align:center;
-    vertical-align:middle;
-    display:table-cell;
+.button 
+{
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    background: transparent;
+    border: none;
+    line-height: normal;
+    font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 400;
+    font-size: 17px;
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    height: auto;
+    text-decoration: none;
+    padding: 4px 10px;
+    font-size: 17px;
+    line-height: 32px;
+    letter-spacing: 0;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #1284ff;
+    border: 0px solid currentColor;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
 }
-
+.button:hover 
+{
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+.button:active 
+{
+    background-color: #1284ff;
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+    opacity: 0.2;
+}
+.button:focus 
+{
+    outline: 0;
+}
+.button:disabled,
+.button[disabled] 
+{
+    opacity: 0.3;
+    cursor: default;
+    pointer-events: none;
+}

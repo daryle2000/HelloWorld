@@ -58,6 +58,7 @@ function myApp() {
             _self.initBatteryStatus();
             _self.initGeoLocation();
 
+            _self.btButtonObj.removeAttr('disabled');
             _self.btButtonObj.unbind('click');
             _self.btButtonObj.click(function () {
                 _self.initBluetooth();
