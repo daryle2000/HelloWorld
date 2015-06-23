@@ -20,7 +20,9 @@
 function myApp() {
     var _self = this;
 
+    this.pageObj = $('#page');
     this.messagesObj = $('#messages');
+    this.windowObj = $(window);
 
     this.postMessage = function (msg) {
         _self.messagesObj.append(msg + '<br>');
@@ -32,6 +34,11 @@ function myApp() {
             StatusBar.show();
             StatusBar.overlaysWebView(false);
             StatusBar.backgroundColorByHexString("#aa0000");
+
+            var w = _self.windowObj.width();
+            var h = _self.windowObj.height();
+            _self.pageObj.css('min-width', w + 'px');
+            _self.pageObj.css('min-height', h + 'px');
 
             _self.postMessage('Device is Ready ...');
         
