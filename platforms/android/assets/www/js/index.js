@@ -22,6 +22,7 @@ function myApp() {
 
     this.pageObj = $('#page');
     this.messagesObj = $('#messages');
+    this.btButtonObj = $('#btScan');
     this.windowObj = $(window);
 
     this.postMessage = function (msg) {
@@ -39,7 +40,11 @@ function myApp() {
         
             _self.initBatteryStatus();
             _self.initGeoLocation();
-            _self.initBluetooth();
+
+            _self.btButtonObj.unbind('click');
+            _self.btButtonObj.click(function () {
+                _self.initBluetooth();
+            });
         }
         catch (e) {
             _self.postMessage(e);
