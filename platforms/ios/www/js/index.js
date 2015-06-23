@@ -27,15 +27,21 @@ function myApp() {
     }
 
     this.onDeviceReady = function () {
-        StatusBar.show();
-        StatusBar.overlaysWebView(false);
-        StatusBar.backgroundColorByHexString("#aa0000");
+        try
+        {
+            StatusBar.show();
+            StatusBar.overlaysWebView(false);
+            StatusBar.backgroundColorByHexString("#aa0000");
 
-        _self.postMessage('Device is Ready ...');
+            _self.postMessage('Device is Ready ...');
         
-        _self.initBatteryStatus();
-        _self.initGeoLocation();
-        _self.initBluetooth();
+            _self.initBatteryStatus();
+            _self.initGeoLocation();
+            _self.initBluetooth();
+        }
+        catch (e) {
+            _self.postMessage(e);
+        }
     };
 
     this.initBatteryStatus = function () {
