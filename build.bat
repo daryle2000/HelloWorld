@@ -1,7 +1,2 @@
-@echo off
-@echo PLATFORM UPDATE
-START /WAIT phonegap platform update ios android
-
-@echo COMMIT REPOSITORY
-git add .
-git commit -a -m 'joe-commit'
+@call build1.bat
+@call build2.bat
